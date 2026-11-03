@@ -14,7 +14,452 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=EB+Garamond:ital,wght@0,400..600;1,400..500&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<style>
+
+/* ============================================================
+   SIMILOLUWA ESTHER AJAYI  /  THE PROFESSIONAL RECORD
+   Palette drawn from the crowned butterfly: gilt on burnt ground,
+   with the wing's sapphire, violet, magenta and rose kept for the
+   jewel rail only.
+   Type: Bodoni Moda (the face cut into the monogram) and EB Garamond.
+   Structure: a bound volume. One gilt spine down the leaf, the
+   chapter name standing in the margin beside what you are reading.
+============================================================ */
+
+:root{
+  --ink:#0A0604;
+  --ink-2:#120B06;
+  --ink-3:#19100A;
+  --rule:#36271A;
+  --rule-soft:#241A11;
+
+  --gold:#D9A648;
+  --gold-br:#F4C56E;
+  --gold-dp:#8A6326;
+  --gold-ghost:#4A3519;
+
+  --cream:#F4ECDC;
+  --cream-dim:#CBBEA8;
+  --cream-mute:#9B8C74;
+
+  --sapphire:#4C86E8;
+  --violet:#BF70E1;
+  --magenta:#CC87C7;
+  --rose:#C16677;
+
+  --shell:1124px;
+  --pad:34px;
+  --margin:174px;
+
+  --display:"Bodoni Moda",ui-serif,Georgia,serif;
+  --text:"EB Garamond",Georgia,"Times New Roman",serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--text);
+  font-size:19px;
+  line-height:1.62;
+  font-feature-settings:"liga" 1,"kern" 1,"onum" 1;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* the ground is not flat black: a low warm bloom behind the masthead
+   and a faint ember at the foot, as light falling on dark leather */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(130% 70% at 18% -12%, rgba(217,166,72,.085), transparent 62%),
+    radial-gradient(95% 55% at 88% 4%, rgba(191,112,225,.045), transparent 60%),
+    radial-gradient(120% 60% at 50% 112%, rgba(193,102,119,.05), transparent 64%);
+}
+body>*{position:relative;z-index:1}
+
+a{color:inherit}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{margin:0;font-weight:400;font-family:var(--display)}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- the skip link ---------- */
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{
+  left:12px;top:12px;z-index:60;background:var(--gold);color:#120B06;
+  padding:10px 18px;border-radius:2px;font-size:15px
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  position:sticky;top:0;z-index:40;
+  background:rgba(10,6,4,.82);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border-bottom:1px solid var(--rule-soft);
+}
+.masthead .shell{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:28px;padding-top:17px;padding-bottom:15px;
+}
+.monogram{
+  font-family:var(--display);font-size:21px;letter-spacing:.09em;
+  color:var(--cream);text-decoration:none;white-space:nowrap;
+}
+.monogram i{font-style:normal;color:var(--gold)}
+.mast-nav{display:flex;align-items:baseline;gap:25px;flex-wrap:wrap;justify-content:flex-end}
+.mast-nav a{
+  font-size:16.5px;color:var(--cream-dim);text-decoration:none;
+  padding-bottom:3px;border-bottom:1px solid transparent;white-space:nowrap;
+}
+.mast-nav a:hover,.mast-nav a:focus-visible{color:var(--cream);border-bottom-color:var(--gold)}
+.mast-nav .pipe{width:1px;height:15px;background:var(--rule);align-self:center}
+.mast-nav .ext{color:var(--gold);font-style:italic}
+.mast-nav .ext:hover{color:var(--gold-br)}
+@media (max-width:860px){
+  .masthead .shell{flex-direction:column;align-items:flex-start;gap:10px}
+  .mast-nav{
+    justify-content:flex-start;gap:21px;flex-wrap:nowrap;
+    width:100%;overflow-x:auto;scrollbar-width:none;
+    -ms-overflow-style:none;padding-bottom:2px;
+    -webkit-mask-image:linear-gradient(to right,#000 88%,transparent);
+    mask-image:linear-gradient(to right,#000 88%,transparent);
+  }
+  .mast-nav::-webkit-scrollbar{display:none}
+  .mast-nav a{font-size:16px}
+  .mast-nav .pipe{height:14px}
+}
+
+/* ---------- the leaf: gilt spine and margin ---------- */
+.leaf{position:relative}
+.leaf::before{
+  content:"";position:absolute;z-index:0;
+  left:calc(var(--pad) + var(--margin));top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,
+    transparent 0, var(--gold-ghost) 3%, var(--gold-dp) 14%,
+    var(--gold-dp) 86%, var(--gold-ghost) 97%, transparent 100%);
+  transform-origin:top;
+}
+.chapter{
+  scroll-margin-top:104px;
+  display:grid;
+  grid-template-columns:var(--margin) minmax(0,1fr);
+  padding-top:86px;
+}
+.chapter:last-of-type{padding-bottom:0}
+.runner{
+  padding-right:30px;text-align:right;
+  position:sticky;top:112px;align-self:start;
+}
+.runner h2{
+  font-size:25px;line-height:1.18;color:var(--gold);
+  letter-spacing:.005em;
+}
+.runner .count{
+  display:block;margin-top:9px;font-size:15px;font-style:italic;
+  color:var(--cream-mute);
+}
+.column{padding-left:38px;min-width:0}
+.standfirst{
+  font-size:20.5px;color:var(--cream-dim);max-width:60ch;
+  margin-bottom:46px;
+}
+.standfirst em{color:var(--cream);font-style:italic}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;grid-template-columns:var(--margin) minmax(0,1fr);
+  padding-top:78px;padding-bottom:16px;
+}
+.hero .plate{
+  padding-right:30px;text-align:right;color:var(--cream-mute);
+  font-size:15.5px;line-height:1.5;font-style:italic;padding-top:14px;
+}
+.hero .plate span{display:block}
+.hero .plate span+span{margin-top:7px}
+.hero .front{
+  padding-left:38px;display:grid;
+  grid-template-columns:minmax(0,1fr) 248px;gap:46px;align-items:stretch;
+}
+h1{
+  font-size:clamp(45px,5.7vw,82px);line-height:.94;letter-spacing:-.012em;
+  font-weight:500;
+}
+h1 .given{display:block}
+h1 .family{display:block;color:var(--gold)}
+.thesis{
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(23px,2.25vw,30px);line-height:1.26;
+  color:var(--cream);margin-top:34px;max-width:27ch;
+}
+.lede{margin-top:30px;max-width:56ch;color:var(--cream-dim)}
+.lede+.lede{margin-top:17px;font-size:18px;color:var(--cream-mute)}
+.lede a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dp)}
+.lede a:hover{color:var(--gold-br);border-bottom-color:var(--gold-br)}
+
+/* the jewel rail: the four wing stones, the only place colour appears */
+.rail{display:grid;grid-template-columns:repeat(2,max-content);gap:11px 38px;margin-top:40px}
+.rail li{display:flex;align-items:center;gap:11px;font-size:17px;color:var(--cream-dim)}
+.rail .stone{width:7px;height:7px;flex:none;border-radius:50%}
+.rail li:nth-child(1) .stone{background:var(--gold);box-shadow:0 0 9px rgba(217,166,72,.6)}
+.rail li:nth-child(2) .stone{background:var(--violet);box-shadow:0 0 9px rgba(191,112,225,.55)}
+.rail li:nth-child(3) .stone{background:var(--sapphire);box-shadow:0 0 9px rgba(76,134,232,.55)}
+.rail li:nth-child(4) .stone{background:var(--rose);box-shadow:0 0 9px rgba(193,102,119,.55)}
+
+/* portrait, in colour, in a gilt frame */
+/* the portrait runs the full height of the frontispiece, a gilt slab */
+.hero .front>div:last-child{display:flex;flex-direction:column;min-height:0}
+.hero .front .portrait{flex:1;min-height:420px}
+.hero .front .portrait img{height:100%;aspect-ratio:auto}
+.portrait{position:relative;padding:9px;background:var(--ink-2);border:1px solid var(--rule);display:flex}
+.portrait::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(217,166,72,.22);
+}
+.portrait img{aspect-ratio:4/5;object-fit:cover;width:100%;height:auto;display:block;filter:saturate(1.04) contrast(1.02)}
+.caption{
+  margin-top:13px;display:flex;justify-content:space-between;gap:14px;
+  font-size:14.5px;font-style:italic;color:var(--cream-mute);
+}
+
+/* ---------- entries ---------- */
+.entry{padding:32px 0;border-top:1px solid var(--rule-soft)}
+.entry:first-of-type{border-top:0;padding-top:0}
+.when{
+  font-size:15.5px;font-style:italic;color:var(--gold);
+  margin-bottom:9px;
+}
+.when .where{color:var(--cream-mute);font-style:italic}
+.when .where::before{content:" / ";color:var(--rule)}
+.role{font-size:28px;line-height:1.2;letter-spacing:-.004em}
+.house{
+  font-family:var(--display);font-size:18.5px;font-style:italic;
+  color:var(--gold);margin-top:7px;
+}
+.gloss{margin-top:15px;max-width:68ch;color:var(--cream-dim);font-size:18.5px}
+.gloss a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dp)}
+.gloss a:hover{color:var(--gold-br)}
+
+/* the itemised work: a hanging gilt fleuron, not a bullet dot */
+.work{margin-top:22px;max-width:70ch}
+.work li{
+  position:relative;padding-left:27px;font-size:18px;
+  color:var(--cream-dim);
+}
+.work li+li{margin-top:15px}
+.work li::before{
+  content:"";position:absolute;left:1px;top:.62em;
+  width:7px;height:7px;background:var(--gold);transform:rotate(45deg);
+  box-shadow:0 0 7px rgba(217,166,72,.45);
+}
+.work li b{font-weight:500;color:var(--cream)}
+.tally{
+  margin-top:24px;padding-top:17px;border-top:1px solid var(--rule-soft);
+  font-family:var(--display);font-style:italic;font-size:19px;color:var(--gold);
+}
+
+/* a quieter entry: the places that need a line, not a page */
+.brief{padding:26px 0;border-top:1px solid var(--rule-soft)}
+.brief .role{font-size:21.5px}
+.brief .gloss{margin-top:10px;font-size:18px}
+
+/* ---------- the published list ---------- */
+.works{margin-top:4px}
+.work-item{
+  padding:26px 0;border-top:1px solid var(--rule-soft);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 34px;align-items:baseline;
+}
+.work-item:first-child{border-top:0;padding-top:0}
+.work-item .cite{font-size:21px;line-height:1.34;font-family:var(--display);color:var(--cream)}
+.work-item .cite em{font-style:italic}
+.work-item .organ{
+  font-size:16px;font-style:italic;color:var(--cream-mute);white-space:nowrap;text-align:right;
+}
+.work-item .organ b{font-weight:400;color:var(--gold);font-style:italic}
+@media (max-width:680px){
+  .work-item{grid-template-columns:1fr}
+  .work-item .organ{text-align:left;white-space:normal}
+}
+.coda{
+  margin-top:40px;padding-top:26px;border-top:1px solid var(--rule);
+  font-family:var(--display);font-style:italic;font-size:21px;color:var(--cream-dim);
+  max-width:62ch;
+}
+.coda a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dp)}
+.coda a:hover{color:var(--gold-br)}
+
+/* ---------- small headings inside a chapter ---------- */
+.rubric{
+  font-family:var(--display);font-size:16.5px;font-style:italic;
+  color:var(--gold);margin:56px 0 20px;
+  display:flex;align-items:center;gap:15px;
+}
+.rubric::after{content:"";flex:1;height:1px;background:var(--rule)}
+.rubric:first-child{margin-top:0}
+
+/* ---------- the credential register ---------- */
+.register{border-top:1px solid var(--rule-soft)}
+.reg-row{
+  display:grid;grid-template-columns:minmax(0,1fr) 150px;
+  gap:6px 30px;align-items:baseline;
+  padding:17px 0;border-bottom:1px solid var(--rule-soft);
+}
+.reg-row .item{font-size:19.5px;color:var(--cream)}
+.reg-row .item small{display:block;font-size:16.5px;font-style:italic;color:var(--cream-mute);margin-top:4px}
+.reg-row .state{font-size:16px;font-style:italic;text-align:right;color:var(--cream-mute)}
+.reg-row .state.done{color:var(--gold)}
+@media (max-width:680px){
+  .reg-row{grid-template-columns:1fr}
+  .reg-row .state{text-align:left}
+}
+
+/* ---------- the closing leaf ---------- */
+.colophon{
+  display:grid;grid-template-columns:var(--margin) minmax(0,1fr);
+  padding-top:96px;padding-bottom:84px;
+}
+.colophon .mark{padding-right:30px;text-align:right}
+.colophon .mark span{
+  font-family:var(--display);font-size:21px;letter-spacing:.09em;color:var(--gold);
+}
+.colophon .said{padding-left:38px}
+.colophon blockquote{
+  margin:0;font-family:var(--display);font-weight:400;
+  font-size:clamp(28px,3.9vw,50px);line-height:1.1;letter-spacing:-.01em;
+  color:var(--cream);max-width:34ch;
+}
+.colophon .after{margin-top:26px;font-size:20px;color:var(--cream-dim);max-width:52ch;font-style:italic;font-family:var(--display)}
+
+/* ---------- foot ---------- */
+footer{border-top:1px solid var(--rule);background:var(--ink-2)}
+footer .shell{padding-top:40px;padding-bottom:44px}
+.foot-links{display:flex;flex-wrap:wrap;gap:13px 30px}
+.foot-links a{font-size:18px;color:var(--cream-dim);text-decoration:none;border-bottom:1px solid var(--rule)}
+.foot-links a:hover{color:var(--cream);border-bottom-color:var(--gold)}
+.foot-rule{height:1px;background:var(--rule-soft);margin:30px 0 24px}
+.foot-base{
+  display:flex;flex-wrap:wrap;gap:9px 26px;justify-content:space-between;
+  font-size:16px;color:var(--cream-mute);font-style:italic;
+}
+.foot-base a{color:var(--gold);text-decoration:none}
+.foot-base a:hover{color:var(--gold-br)}
+
+/* ---------- focus ---------- */
+:focus-visible{outline:2px solid var(--gold-br);outline-offset:3px;border-radius:1px}
+
+/* ---------- the single orchestrated moment: the leaf opens ---------- */
+@keyframes gild{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.leaf::before{animation:gild 1500ms cubic-bezier(.16,1,.3,1) both}
+h1 .given{animation:rise 820ms cubic-bezier(.16,1,.3,1) 120ms both}
+h1 .family{animation:rise 820ms cubic-bezier(.16,1,.3,1) 250ms both}
+.thesis{animation:rise 820ms cubic-bezier(.16,1,.3,1) 400ms both}
+.portrait{animation:rise 900ms cubic-bezier(.16,1,.3,1) 330ms both}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ---------- the volume, unbound: narrow viewports ---------- */
+@media (max-width:900px){
+  :root{--margin:0px;--pad:24px}
+  .leaf::before{display:none}
+  .hero,.chapter,.colophon{grid-template-columns:1fr}
+  .hero{padding-top:52px}
+  .hero .front{padding-left:0;grid-template-columns:1fr;gap:40px;align-items:start}
+  .hero .plate{
+    padding:0 0 26px;text-align:left;
+    display:flex;flex-wrap:wrap;gap:4px 20px;
+  }
+  .hero .plate span+span{margin-top:0}
+  .column,.colophon .said{padding-left:0}
+  .chapter{padding-top:64px}
+  .runner{
+    position:static;padding:0 0 26px;text-align:left;
+    border-bottom:1px solid var(--rule);margin-bottom:34px;
+  }
+  .runner h2{font-size:30px}
+  .runner .count{margin-top:6px}
+  .colophon .mark{padding:0 0 26px;text-align:left}
+  .portrait{max-width:264px}
+  .hero .front{gap:34px;align-items:start}
+  .hero .front>div:last-child{display:block}
+  .hero .front .portrait{min-height:0;flex:none}
+  .hero .front .portrait img{height:auto;aspect-ratio:4/5}
+  .rail{grid-template-columns:1fr;gap:9px;margin-top:34px}
+  body{font-size:18px}
+}
+@media (max-width:560px){
+  .role{font-size:24px}
+  .thesis{margin-top:26px}
+  .rail{gap:0 24px}
+}
+
+
+/* ============================================================
+   MULTI-PAGE ADDITIONS
+============================================================ */
+
+.mast-nav a[aria-current="page"]{color:var(--gold);border-bottom-color:var(--gold-dp)}
+
+/* the table of contents, on the frontispiece */
+.toc{display:grid;grid-template-columns:var(--margin) minmax(0,1fr);padding-top:92px;padding-bottom:12px}
+.toc .label{padding-right:30px;text-align:right}
+.toc .label span{font-family:var(--display);font-size:25px;font-style:italic;color:var(--gold)}
+.toc .list{padding-left:38px;min-width:0;border-top:1px solid var(--rule)}
+.cnt-row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px 34px;
+  align-items:baseline;padding:26px 0;border-bottom:1px solid var(--rule-soft);
+}
+.cnt-row h3{font-size:28px;line-height:1.16}
+.cnt-row h3 a{color:var(--cream);text-decoration:none;border-bottom:1px solid transparent}
+.cnt-row h3 a:hover,.cnt-row h3 a:focus-visible{color:var(--gold-br);border-bottom-color:var(--gold-dp)}
+.cnt-row .say{grid-column:1;font-size:18px;color:var(--cream-mute);max-width:58ch}
+.cnt-row .fig{
+  grid-row:1;grid-column:2;font-size:15.5px;font-style:italic;
+  color:var(--gold);text-align:right;white-space:nowrap;
+}
+@media (max-width:680px){
+  .cnt-row{grid-template-columns:1fr}
+  .cnt-row .fig{grid-row:auto;grid-column:1;text-align:left}
+}
+
+/* turning the leaf: foot of every inner page */
+.leafnav{display:grid;grid-template-columns:var(--margin) minmax(0,1fr);padding:78px 0 16px}
+.leafnav .pair{
+  grid-column:2;padding-left:38px;padding-top:24px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;
+}
+.leafnav a{
+  font-family:var(--display);font-style:italic;font-size:21px;
+  color:var(--cream-dim);text-decoration:none;max-width:22ch;
+}
+.leafnav a:hover,.leafnav a:focus-visible{color:var(--gold-br)}
+.leafnav .lab{
+  display:block;font-family:var(--text);font-style:normal;font-size:14.5px;
+  color:var(--cream-mute);margin-bottom:6px;
+}
+.leafnav .next{text-align:right;margin-left:auto}
+.leafnav .next .lab{text-align:right}
+
+/* an inner page opens straight into its chapter */
+.inner .chapter{padding-top:72px}
+
+@media (max-width:900px){
+  .toc,.leafnav{grid-template-columns:1fr}
+  .toc{padding-top:60px}
+  .toc .label{padding:0 0 22px;text-align:left}
+  .toc .list{padding-left:0}
+  .leafnav{padding-top:56px}
+  .leafnav .pair{grid-column:1;padding-left:0;gap:30px}
+  .leafnav a{font-size:19px}
+}
+
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the record</a>
